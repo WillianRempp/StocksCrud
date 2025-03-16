@@ -1,43 +1,38 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using api.Dtos.Comment;
 using api.Models;
 
-namespace api.Mappers
+namespace api.Mappers;
+
+public static class CommentMapper
 {
-    public static class CommentMapper
+    public static CommentDto ToCommentDto(this Comment commentModel)
     {
-        public static CommentDto ToCommentDto(this Comment commentModel)
+        return new CommentDto()
         {
-            return new CommentDto()
-            {
-                Id = commentModel.Id,
-                Title = commentModel.Title,
-                Content = commentModel.Content,
-                CreatedOn = commentModel.CreatedOn,
-                StockId = commentModel.StockId
-            };
-        }
+            Id = commentModel.Id,
+            Title = commentModel.Title,
+            Content = commentModel.Content,
+            CreatedOn = commentModel.CreatedOn,
+            StockId = commentModel.StockId
+        };
+    }
 
-        public static Comment ToCommentFromCreateCommentDto(this CreateCommentDto commentDto, int stockId)
+    public static Comment ToCommentFromCreateCommentDto(this CreateCommentDto commentDto, int stockId)
+    {
+        return new Comment()
         {
-            return new Comment()
-            {
-                Title = commentDto.Title,
-                Content = commentDto.Content,
-                StockId = stockId
-            };
-        }
+            Title = commentDto.Title,
+            Content = commentDto.Content,
+            StockId = stockId
+        };
+    }
 
-        public static Comment ToCommentFromUpdateCommentDto(this UpdateCommentDto commentDto)
+    public static Comment ToCommentFromUpdateCommentDto(this UpdateCommentDto commentDto)
+    {
+        return new Comment()
         {
-            return new Comment()
-            {
-                Title = commentDto.Title,
-                Content = commentDto.Content
-            };
-        }
+            Title = commentDto.Title,
+            Content = commentDto.Content
+        };
     }
 }
